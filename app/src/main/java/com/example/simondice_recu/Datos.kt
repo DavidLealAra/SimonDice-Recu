@@ -12,4 +12,16 @@ object Datos {
         ADIVINANDO(2, "Adivinando"),
         PERDIDO(3, "Perdido")
     }
+
+    // Botones de colores disponibles
+    enum class ColorButton(val color: Color, val label: String, val value: Int) {
+        VERDE(Color.Green, "Verde", 1),
+        ROJO(Color.Red, "Rojo", 2),
+        AMARILLO(Color.Yellow, "Amarillo", 3),
+        AZUL(Color.Blue, "Azul", 4)
+    }
+    /**
+     * Data class para definir las propiedades de cada botón.
+     */
+    data class ButtonData(val colorButton: ColorButton, val shape: RoundedCornerShape)
 }
