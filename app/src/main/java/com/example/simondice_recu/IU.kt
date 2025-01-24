@@ -22,7 +22,17 @@ fun IU(viewModel: ModelView) {
     val estado by viewModel.estadoLiveData.observeAsState(Datos.Estados.INICIO)
     val ronda by viewModel.rondaLiveData.observeAsState(0)
     val mensaje by viewModel.mensajeLiveData.observeAsState("")
-    Column {
+
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.background(Color.Gray)
+    ) {
+        Text(text = "Ronda: $ronda", color = Color.Green, modifier = Modifier.padding(16.dp))
+
+        if (estado == Datos.Estados.PERDIDO) {
+            Text(text = "Perdiste", color = Color.Red, modifier = Modifier.padding(16.dp))
+        }
 
     }
 }
