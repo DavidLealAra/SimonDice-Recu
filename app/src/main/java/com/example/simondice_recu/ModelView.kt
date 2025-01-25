@@ -58,4 +58,22 @@ class ModelView(private val activity: ComponentActivity) : ViewModel() {
             indiceActual = 0
         }
     }
+    /**
+     * Compara el color seleccionado por el usuario con el esperado en la secuencia.
+     */
+    fun compararColor(colorSeleccionado: Datos.ColorButton): Boolean {
+        if (colorSeleccionado == secuenciaColores[indiceActual]) {
+            indiceActual++
+            if (indiceActual == secuenciaColores.size) {
+                estadoLiveData.value = Datos.Estados.GENERANDO
+                viewModelScope.launch {
+                    delay(1000)
+                }
+            }
+            return true
+        } else {
+            finalizarJuego()
+            return false
+        }
+    }
 }
