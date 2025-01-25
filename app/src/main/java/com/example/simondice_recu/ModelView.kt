@@ -23,4 +23,14 @@ class ModelView(private val activity: ComponentActivity) : ViewModel() {
 
     // LiveData para gestionar los mensajes
     val mensajeLiveData = MutableLiveData<String>()
+    // Secuencia de colores que el usuario debe recordar
+    private val secuenciaColores = mutableListOf<Datos.ColorButton>()
+    /**
+     * Comienza el juego reiniciando todos los valores y generando la primera secuencia.
+     */
+    fun empezarJuego() {
+        estadoLiveData.value = Datos.Estados.GENERANDO
+        secuenciaColores.clear()
+        rondaLiveData.value = 0
+    }
 }
