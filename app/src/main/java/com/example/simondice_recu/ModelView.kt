@@ -27,6 +27,13 @@ class ModelView(private val activity: ComponentActivity) : ViewModel() {
     private val secuenciaColores = mutableListOf<Datos.ColorButton>()
     // Índice actual del color que el usuario está adivinando
     private var indiceActual = 0
+    // Inicialización de botones
+    val buttons = listOf(
+        Datos.ButtonData(Datos.ColorButton.VERDE, RoundedCornerShape(bottomEnd = 180.dp)),
+        Datos.ButtonData(Datos.ColorButton.ROJO, RoundedCornerShape(bottomStart = 180.dp)),
+        Datos.ButtonData(Datos.ColorButton.AMARILLO, RoundedCornerShape(topEnd = 180.dp)),
+        Datos.ButtonData(Datos.ColorButton.AZUL, RoundedCornerShape(topStart = 180.dp))
+    )
     /**
      * Comienza el juego reiniciando todos los valores y generando la primera secuencia.
      */
