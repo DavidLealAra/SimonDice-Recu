@@ -33,6 +33,18 @@ fun IU(viewModel: ModelView) {
         if (estado == Datos.Estados.PERDIDO) {
             Text(text = "Perdiste", color = Color.Red, modifier = Modifier.padding(16.dp))
         }
-
+    }
+    /**
+     * BotonInicio - Renderiza el botón para iniciar el juego.
+     */
+    @Composable
+    fun BotonInicio(viewModel: ModelView, estado: Datos.Estados) {
+        Button(
+            onClick = { viewModel.empezarJuego() },
+            modifier = Modifier.padding(8.dp),
+            enabled = estado == Datos.Estados.INICIO || estado == Datos.Estados.PERDIDO
+        ) {
+            Text("Iniciar")
+        }
     }
 }
