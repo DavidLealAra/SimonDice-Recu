@@ -33,4 +33,11 @@ class ModelView(private val activity: ComponentActivity) : ViewModel() {
         secuenciaColores.clear()
         rondaLiveData.value = 0
     }
+    /**
+     * Finaliza el juego cambiando el estado a PERDIDO.
+     */
+    fun finalizarJuego() {
+        estadoLiveData.value = Datos.Estados.PERDIDO
+        mensajeLiveData.postValue("Perdiste")
+    }
 }
