@@ -25,6 +25,8 @@ class ModelView(private val activity: ComponentActivity) : ViewModel() {
     val mensajeLiveData = MutableLiveData<String>()
     // Secuencia de colores que el usuario debe recordar
     private val secuenciaColores = mutableListOf<Datos.ColorButton>()
+    // Índice actual del color que el usuario está adivinando
+    private var indiceActual = 0
     /**
      * Comienza el juego reiniciando todos los valores y generando la primera secuencia.
      */
@@ -39,5 +41,21 @@ class ModelView(private val activity: ComponentActivity) : ViewModel() {
     fun finalizarJuego() {
         estadoLiveData.value = Datos.Estados.PERDIDO
         mensajeLiveData.postValue("Perdiste")
+    }
+    /**
+     * Muestra la secuencia al usuario.
+     * Cambia el estado a ADIVINANDO una vez que se muestra completamente.
+     */
+    private fun mostrarSecuencia() {
+        viewModelScope.launch {
+            for (color in secuenciaColores) {
+                mensajeLiveData.postValue(color.label)
+                delay(500)
+                mensajeLiveData.postValue("")
+                delay(500)
+            }
+            estadoLiveData.value = Datos.Estados.ADIVINANDO
+            indiceActual = 0
+        }
     }
 }
