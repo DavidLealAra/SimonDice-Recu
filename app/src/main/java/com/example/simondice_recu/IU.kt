@@ -47,6 +47,7 @@ fun IU(viewModel: ModelView) {
             Text("Iniciar")
         }
     }
+
     /**
      * Botones - Renderiza los botones de colores.
      */
@@ -66,7 +67,9 @@ fun IU(viewModel: ModelView) {
                                 }
                             },
                             colors = ButtonDefaults.buttonColors(
-                                containerColor = if (mensaje == boton.colorButton.label) boton.colorButton.color.copy(alpha = 0.5f) else boton.colorButton.color
+                                containerColor = if (mensaje == boton.colorButton.label) boton.colorButton.color.copy(
+                                    alpha = 0.5f
+                                ) else boton.colorButton.color
                             ),
                             modifier = Modifier
                                 .size(120.dp)
@@ -78,3 +81,4 @@ fun IU(viewModel: ModelView) {
             }
         }
     }
+}
