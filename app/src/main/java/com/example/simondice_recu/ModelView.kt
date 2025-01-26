@@ -41,6 +41,7 @@ class ModelView(private val activity: ComponentActivity) : ViewModel() {
         estadoLiveData.value = Datos.Estados.GENERANDO
         secuenciaColores.clear()
         rondaLiveData.value = 0
+        agregarColorASecuencia()
     }
     /**
      * Finaliza el juego cambiando el estado a PERDIDO.
@@ -75,6 +76,7 @@ class ModelView(private val activity: ComponentActivity) : ViewModel() {
                 estadoLiveData.value = Datos.Estados.GENERANDO
                 viewModelScope.launch {
                     delay(1000)
+                    agregarColorASecuencia()
                 }
             }
             return true
@@ -82,5 +84,14 @@ class ModelView(private val activity: ComponentActivity) : ViewModel() {
             finalizarJuego()
             return false
         }
+    }
+    /**
+     * Agrega un nuevo color a la secuencia y actualiza la ronda.
+     */
+    private fun agregarColorASecuencia() {
+        val nuevoColor = Datos.ColorButton.values().random()
+        secuenciaColores.add(nuevoColor)
+        rondaLiveData.value = (rondaLiveData.value ?: 0) + 1
+        mostrarSecuencia()
     }
 }
