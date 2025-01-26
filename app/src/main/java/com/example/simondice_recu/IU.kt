@@ -33,7 +33,11 @@ fun IU(viewModel: ModelView) {
         if (estado == Datos.Estados.PERDIDO) {
             Text(text = "Perdiste", color = Color.Red, modifier = Modifier.padding(16.dp))
         }
+
+        Botones(viewModel, estado, mensaje)
+        BotonInicio(viewModel, estado)
     }
+}
     /**
      * BotonInicio - Renderiza el botón para iniciar el juego.
      */
@@ -81,4 +85,3 @@ fun IU(viewModel: ModelView) {
             }
         }
     }
-}
