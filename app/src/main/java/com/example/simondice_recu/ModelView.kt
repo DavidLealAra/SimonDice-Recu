@@ -23,16 +23,28 @@ class ModelView(private val activity: ComponentActivity) : ViewModel() {
 
     // LiveData para gestionar los mensajes
     val mensajeLiveData = MutableLiveData<String>()
+
     // Secuencia de colores que el usuario debe recordar
     private val secuenciaColores = mutableListOf<Datos.ColorButton>()
+
     // Índice actual del color que el usuario está adivinando
     private var indiceActual = 0
+
     // Inicialización de botones
     val buttons = listOf(
         Datos.ButtonData(Datos.ColorButton.VERDE, RoundedCornerShape(bottomEnd = 180.dp)),
         Datos.ButtonData(Datos.ColorButton.ROJO, RoundedCornerShape(bottomStart = 180.dp)),
         Datos.ButtonData(Datos.ColorButton.AMARILLO, RoundedCornerShape(topEnd = 180.dp)),
         Datos.ButtonData(Datos.ColorButton.AZUL, RoundedCornerShape(topStart = 180.dp))
+    )
+    // Sonidos
+    private val soundMap = mapOf(
+        Datos.ColorButton.VERDE to MediaPlayer.create(activity, R.raw.sound_green),
+        Datos.ColorButton.ROJO to MediaPlayer.create(activity, R.raw.sound_red),
+        Datos.ColorButton.AMARILLO to MediaPlayer.create(activity, R.raw.sound_yellow),
+        Datos.ColorButton.AZUL to MediaPlayer.create(activity, R.raw.sound_blue),
+        "start" to MediaPlayer.create(activity, R.raw.sound_start),
+        "error" to MediaPlayer.create(activity, R.raw.sound_error)
     )
     /**
      * Comienza el juego reiniciando todos los valores y generando la primera secuencia.
@@ -41,6 +53,7 @@ class ModelView(private val activity: ComponentActivity) : ViewModel() {
         estadoLiveData.value = Datos.Estados.GENERANDO
         secuenciaColores.clear()
         rondaLiveData.value = 0
+        soundMap["start"]?.start()
         agregarColorASecuencia()
     }
     /**
@@ -49,6 +62,7 @@ class ModelView(private val activity: ComponentActivity) : ViewModel() {
     fun finalizarJuego() {
         estadoLiveData.value = Datos.Estados.PERDIDO
         mensajeLiveData.postValue("Perdiste")
+        soundMap["error"]?.start()
     }
     /**
      * Muestra la secuencia al usuario.
@@ -58,6 +72,7 @@ class ModelView(private val activity: ComponentActivity) : ViewModel() {
         viewModelScope.launch {
             for (color in secuenciaColores) {
                 mensajeLiveData.postValue(color.label)
+                soundMap[color]?.start()
                 delay(500)
                 mensajeLiveData.postValue("")
                 delay(500)

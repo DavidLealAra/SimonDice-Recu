@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace = "com.example.simondice_recu"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.simondice_recu"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
