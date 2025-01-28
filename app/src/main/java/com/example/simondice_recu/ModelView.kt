@@ -2,8 +2,7 @@ package com.example.simondice_recu
 
 import android.media.MediaPlayer
 import androidx.activity.ComponentActivity
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.ui.unit.dp
+import androidx.compose.foundation.shape.CircleShape
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -32,10 +31,10 @@ class ModelView(private val activity: ComponentActivity) : ViewModel() {
 
     // Inicialización de botones
     val buttons = listOf(
-        Datos.ButtonData(Datos.ColorButton.VERDE, RoundedCornerShape(bottomEnd = 180.dp)),
-        Datos.ButtonData(Datos.ColorButton.ROJO, RoundedCornerShape(bottomStart = 180.dp)),
-        Datos.ButtonData(Datos.ColorButton.AMARILLO, RoundedCornerShape(topEnd = 180.dp)),
-        Datos.ButtonData(Datos.ColorButton.AZUL, RoundedCornerShape(topStart = 180.dp))
+        Datos.ButtonData(Datos.ColorButton.VERDE, CircleShape),
+        Datos.ButtonData(Datos.ColorButton.ROJO, CircleShape),
+        Datos.ButtonData(Datos.ColorButton.AMARILLO, CircleShape),
+        Datos.ButtonData(Datos.ColorButton.AZUL, CircleShape)
     )
     // Sonidos
     private val soundMap = mapOf(

@@ -26,7 +26,7 @@ fun IU(viewModel: ModelView) {
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.background(Color.Gray)
+        modifier = Modifier.background(Color.Black)
     ) {
         Text(text = "Ronda: $ronda", color = Color.Green, modifier = Modifier.padding(16.dp))
 
@@ -55,33 +55,35 @@ fun IU(viewModel: ModelView) {
     /**
      * Botones - Renderiza los botones de colores.
      */
-    @Composable
-    fun Botones(viewModel: ModelView, estado: Datos.Estados, mensaje: String) {
-        Column(
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            viewModel.buttons.chunked(2).forEach { fila ->
-                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    fila.forEach { boton ->
-                        Button(
-                            onClick = {
-                                if (estado == Datos.Estados.ADIVINANDO) {
-                                    viewModel.compararColor(boton.colorButton)
-                                }
-                            },
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = if (mensaje == boton.colorButton.label) boton.colorButton.color.copy(
-                                    alpha = 0.5f
-                                ) else boton.colorButton.color
-                            ),
-                            modifier = Modifier
-                                .size(120.dp)
-                                .padding(4.dp),
-                            shape = boton.shape
-                        ) {}
-                    }
+/**
+ * Botones - Renderiza los botones de colores.
+ */
+@Composable
+fun Botones(viewModel: ModelView, estado: Datos.Estados, mensaje: String) {
+    Column(
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        viewModel.buttons.chunked(2).forEach { fila ->
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                fila.forEach { boton ->
+                    Button(
+                        onClick = {
+                            if (estado == Datos.Estados.ADIVINANDO) {
+                                viewModel.compararColor(boton.colorButton)
+                            }
+                        },
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = if (mensaje == boton.colorButton.label) boton.colorButton.color.copy(alpha = 0.7f) else boton.colorButton.color
+                        ),
+                        modifier = Modifier
+                            .size(120.dp)
+                            .padding(4.dp),
+                        shape = boton.shape
+                    ) {}
                 }
             }
         }
     }
+}
+

@@ -15,7 +15,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             SimonDiceRecuTheme {
                 Surface(
-                    color = Color.LightGray,
+                    color = Color.Black,
                     modifier = Modifier.fillMaxSize()
                 ) {
                     IU(viewModel = ModelView(this))
