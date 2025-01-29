@@ -53,9 +53,3 @@ Este proyecto es una implementación del juego "Simón Dice", desarrollado en Ko
 - **Guardar la puntuación más alta.**
 - **Soporte multijugador en línea.**
 
----
-## 🎨 Capturas de Pantalla
-![Pantalla de Inicio](Inicio.png)
-![Juego en Progreso](Juego.png)
-![Pantalla de Perdido](Perdiste.png)
-
